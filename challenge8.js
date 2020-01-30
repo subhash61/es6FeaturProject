@@ -56,7 +56,7 @@ console.log(i);*/
      let a = 5;
      const b = 1;
  }
- console.log(a+b);*/
+ console.log(a+b);*///Error msg
  /************************************************************************************************************************************************************
   * ********************************************************************************************************************************************************/
  //STRINGS
@@ -145,7 +145,7 @@ box5.clickMe();*/
     }
 }
 box5.clickMe();*/
-/************************************ *
+/********************************************************************************************************************************************************
 **************************************/
 
 //ES 6
@@ -185,12 +185,12 @@ box6.clickMe();*/
 //keyword.
 
 
-//function Person(name) {
-  //  this.name = name;
-//}
+/*function Person(name) {
+    this.name = name;
+}*/
 
-/*//ES 5
-Person.prototype.myFriends5 = function(friends) {
+//ES 5
+/*Person.prototype.myFriends5 = function(friends) {
 
     var arr = friends.map(function(el) {
         return this.name + ' is friends with ' + el;
@@ -230,7 +230,7 @@ new Person('John').myFriends5(friends);*/
 ////////////////////////Lecture : DESTRUCTURING
 
 //ES 5
-const John = ['John' , 26];
+//const John = ['John' , 26];
 //var name = John[0];
 //var age = John[1];
 
@@ -552,4 +552,153 @@ All the report data should be printed to the console.
 HINT: Use some of the ES6 features: classes, subclasses, template strings, default parameters, maps, arrow functions, destructuring, etc.
 
 */
+//1st TRY
+/*class Parks {
+    constructor (name, buildYear, noOfTrees, parkArea){
+        this.name = name;
+        this.buildYear = buildYear;
+        this.noOfTrees = noOfTrees;
+        this.parkArea = parkArea;
+    }
+    calculateAge() {
+        var age = new Date().getFullYear() - this.buildYear;
+        sum+=age;
+        return age;
+    }
+    parkDensity() {
+        var density = this.noOfTrees/this.parkArea;
+        return density;
+    }   
+    Moretrees() {
+        if(this.noOfTrees>1000)
+        return this.name;
+    } 
+    
+}
+class Streets {
+    constructor (name, buildYear, totallength, sizeclass = `normal`) {
+        this.name = name;
+        this.buildYear = buildYear;
+        this.totallength = totallength;
+        this.sizeclass = sizeclass;
 
+    }
+    sizeclass()
+    {
+        if(this.sizeclass<10000){
+            this.sizeclass = 'tiny';
+        }
+        else if (this.sizeclass > 10000 && this.sizeclass < 20000) {
+            this.sizeclass = 'small';
+        } 
+        else if (this.sizeclass > 20000 && this.sizeclass < 30000) {
+            this.sizeclass = 'normal';
+        }
+        else if (this.sizeclass > 30000 && this.sizeclass < 40000) {
+            this.sizeclass = 'big';
+        }
+        else if (this.sizeclass > 40000 && this.sizeclass < 50000) {
+            this.sizeclass = 'Huge';
+        }
+        else {
+            this.sizeclass = 'normal';
+        }
+    }
+}
+var sum=0;
+var park1 = new Parks('Sanjay Park', 1990, 456, 3456);
+var  park1Age = park1.calculateAge();
+park1.parkDensity();
+park1.Moretrees();
+var park2 = new Parks('Gandhi Park', 1980, 300, 2000);
+var park2Age = park2.calculateAge();
+var park3 = new Parks('Indhira Park', 1970, 4000, 2890);
+var park3Age = park3.calculateAge();
+var averageAge = sum/3;
+
+
+var street1 = new Streets('Sarojni Street', 1949, 700000);
+var street2 = new Streets('MG Road', 1900, 1000000);
+var street3 = new Streets ('SC BOSE Road', 1900, 1500000);
+var street4 = new Streets('Rajendra Road', 1959, 18900);
+*/
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//SIMILAR TO WRITER
+class Elements {
+    constructor (name, buidlyr) {
+        this.name = name;
+        this.buidlyr = buidlyr;
+    }
+
+}
+class Parks extends Elements {
+    constructor (name, buidlyr, noOfTrees, parkArea) {
+        super (name, buidlyr);
+        this.noOfTrees = noOfTrees;
+        this.parkArea = parkArea;
+    }
+    ParkDensity () {
+        var Density =  this.noOfTrees / this.parkArea;
+        console.log(`${this.name} has a tree density of ${Density} trees per square km`);
+        
+    }
+    
+
+}
+class Streets extends Elements {
+        constructor (name, buidlyr, totalLength, size = 3) {
+            super (name, buidlyr);
+            this.totalLength = totalLength;
+            this.size = size;
+                   }
+        streettypes () {
+            const streetanalysis = new Map ();
+            streetanalysis.set(1, 'tiny');
+            streetanalysis.set(2, 'small');
+            streetanalysis.set(3, 'normal');
+            streetanalysis.set(4, 'big');
+            streetanalysis.set(5, 'huge');
+            console.log(`${this.name} build in ${this.buidlyr}, is a ${streetanalysis.get(this.size)}`);
+    
+        }
+    
+}
+function calc (arr) {
+    const sum =  arr.reduce((prev, cur, index) => prev + cur , 0);
+    console.log(arr);
+    return [sum, sum/arr.length];    
+}
+
+var parkArr = [ new Parks ('Sanjay Park', 1920, 956, .89), 
+                new Parks ('Gandhi Park', 1970, 1000, .65), 
+                new Parks ('Indhira Park', 1945, 1320, .9)   ];
+
+var streetsArr = [ new Streets ('Sarojini Marg', 1960, 1234, 2),
+                   new Streets ('M.G Road', 1975, 1567, 1),
+                   new Streets ('SC Bose Marg', 1960, 4789),
+                   new Streets ('Rajendra Marg', 1934, 345, 5)  ];
+
+
+function parkReport (p) {
+    var sum = 0;
+    console.log(`                   ------------PARK REPORT --------------      `);
+    p.forEach(el => el.ParkDensity());
+    const ages =p.map(el => new Date().getFullYear() - el.buidlyr);
+    const [totalAge, avgAge] = calc(ages);
+    console.log(`Our ${p.length} parks have an average of ${avgAge} years.`);
+    const i = p.map (el => el.noOfTrees).findIndex(el => el >= 1000); 
+            console.log(`${p[i].name} has more than 1000 trees.`);
+        }
+        
+
+
+function streetReport (s) {
+    
+    console.log(`                  -----------------STREET REPORT------------          `);
+    const [totalLength, avgLength] = calc(s.map(el => el.totalLength));
+    console.log(`Our ${s.length} streets have a total length of ${totalLength} km , with an average of  ${avgLength} km`);
+    s.map(el => el.streettypes());
+}
+parkReport(parkArr)
+streetReport(streetsArr)
